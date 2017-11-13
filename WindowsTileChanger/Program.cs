@@ -19,9 +19,18 @@ namespace WindowsTileChanger
 
                     if( template != null )
                     {
+                        var tilesUpdated = 0;
+
                         foreach( var startGroup in template.DefaultLayoutOverride.StartLayoutCollection.StartLayout.StartGroup )
                         {
-                            if( startGroup.Name == "Applications" )
+                            var group = options.Group;
+
+                            if( string.IsNullOrEmpty( group ) )
+                            {
+                                group = startGroup.Name;
+                            }
+
+                            if( string.Compare( startGroup.Name, group, true ) == 0 )
                             {
                                 foreach( var desktopApplicationTile in startGroup.DesktopApplicationTile )
                                 {
@@ -38,10 +47,14 @@ namespace WindowsTileChanger
 
                                     Shortcut.Touch( shortcut );
 
-                                    return 0;
+                                    tilesUpdated++;
                                 }
                             }
                         }
+
+                        Console.WriteLine( $"Updated {tilesUpdated} tiles!" );
+
+                        return 0;
                     }
                 }
 

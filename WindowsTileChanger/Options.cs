@@ -12,6 +12,9 @@ namespace WindowsTileChanger
         [Option( 'b', "backgroundcolor", Required = true, HelpText = "red, blue, etc or transparent or RGB code (with #)" )]
         public string BackgroundColor { get; set; }
 
+        [Option( 'g', "group", Required = false, HelpText = "Specifies a start menu group name." )]
+        public string Group { get; set; }
+
         [HelpOption( 'h', "help", HelpText = "Display this help screen." )]
         public string GetUsage()
         {
